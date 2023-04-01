@@ -46,8 +46,11 @@ public class GraphdbCommunication {
 	
 	public void queryGraphDBRepo(String graphdb_endpoint, String queryStr) {
 		
+		System.out.println("Querying " + graphdb_endpoint);
+		
+		
 		Query q = QueryFactory.create(queryStr);
-	
+		
 		
 		QueryExecution qe =
 				QueryExecutionFactory.sparqlService(graphdb_endpoint,q);
@@ -86,8 +89,8 @@ public class GraphdbCommunication {
 		String test;		
 		
 		test="world-cities";
-		test="nobel-prizes";
-		test="named-graph";
+		//test="nobel-prizes";
+		//test="named-graph";
 		boolean load_Data=true;
 		
 		
@@ -98,11 +101,13 @@ public class GraphdbCommunication {
 		String format="ttl";
 		String query_file;
 		
+		String localhost = "http://127.0.0.1:7200";
+		
 		try {
 		
 			if (test.equals("world-cities")) {
 				//GraphDB Endpoint
-				graphdb_endpoint = "http://192.168.0.18:7200/repositories/Lab6_repository_automatic";
+				graphdb_endpoint = localhost + "/repositories/lab_graphdb";
 				
 				path_to_data_file = "files/worldcities-free-100-task2.ttl";
 				path_to_onto_file = "files/ontology_lab5.ttl";
@@ -121,27 +126,27 @@ public class GraphdbCommunication {
 				
 				//Load query from file				
 				query_file="files/lab9/query_nobel-prize.txt";
-				query_file="files/lab9/solution/query7.5_nobel-prize.txt";
+				//query_file="files/lab9/solution/query7.5_nobel-prize.txt";
 				
 				ReadFile qfile = new ReadFile(query_file);		
 				queryStr = qfile.readFileIntoString();
 				
-				graphdb_endpoint = "http://192.168.0.18:7200/repositories/NobelPrize";
+				graphdb_endpoint = localhost + "/repositories/NobelPrize";
 				path_to_onto_file = "files/nobel-prize-ontology.rdf";
 				path_to_data_file = "files/nobelprize_kg.nt";
 				
 			}
 			else {
 				format="trig";
-				graphdb_endpoint = "http://192.168.0.18:7200/repositories/namedGraphs";    
+				graphdb_endpoint = localhost + "/repositories/namedGraphs";    
 				path_to_data_file = "files/lab9/named_graphs.ttl";
 				
 					    
 				query_file="files/lab9/query_named_simple.txt";
 				query_file="files/lab9/query_named1.txt";
-				query_file="files/lab9/query_named2.txt";
-				query_file="files/lab9/query_named_all.txt";
-				query_file="files/lab9/query_named_from.txt";
+				//query_file="files/lab9/query_named2.txt";
+				//query_file="files/lab9/query_named_all.txt";
+				//query_file="files/lab9/query_named_from.txt";
 				
 					    
 				ReadFile qfile = new ReadFile(query_file);		
